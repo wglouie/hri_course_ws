@@ -39,6 +39,7 @@ qtcreator-*
 *.user
 .idea
 .vscode
+.ipynb_checkpoints
 
 /planning/cfg
 /planning/docs
