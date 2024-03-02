@@ -1,16 +1,16 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
-from dialogflow_ros.msg import DialogflowResult
+from dialogflow_ros_msgs.msg import DialogflowResult
 
 pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=10)
 
 def callback(data):
-    print data.intent
+    print(data.intent)
     if data.intent == 'move':
         twist_msg = Twist()
-        print data.parameters[0].value[0]
+        print(data.parameters[0].value[0])
 
         if 'Right' in data.parameters[0].value[0]:
             twist_msg.angular.z = 5
@@ -21,9 +21,9 @@ def callback(data):
         elif 'Down' in data.parameters[0].value[0]:
             twist_msg.linear.x = -5
         else:
-            print "No movement direction provided by users"
+            print("No movement direction provided by users")
             return
-        print twist_msg
+        print(twist_msg)
         pub.publish(twist_msg)
         
 def listener():
@@ -36,4 +36,3 @@ if __name__=='__main__':
         listener()
     except rospy.InterrupException:
         pass
-
