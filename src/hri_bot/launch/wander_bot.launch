@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+  <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>
+
+  <node pkg="hri_bot" type="wander_bot.py" name="wander_bot1">
+    <remap from="cmd_vel" to="/cmd_vel_mux/input/teleop" />
+  </node>
+
+
+
+</launch>
+
